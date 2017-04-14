@@ -1,0 +1,14 @@
+To setup the project.
+
+- Bundle install to install missing gems
+- Then open database.yml file >> setup your own postgres "username and password" there.
+- Postgresql is used to build the project
+- Now run "rake db:create" to create a blank database
+- Once database created successfully then migrate database using "rake db:migrate"
+- Open a seed file to check role and admin user
+- Now run "rake db:seed" to make default entries like roles and admin user into DB.
+- Once all the steps are done now you can login/signup to system.
+- Admin Email  to login : admin@example.com
+- Admin password : password
+
+For users you can decide your own email to signup.

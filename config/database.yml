@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: 123456
+  
+  host: localhost
+  pool: 5
+
+development:
+  <<: *default
+  database: blogger_development
+
+test:
+  <<: *default
+  database: blogger_test
+
+production:
+  <<: *default
+  database: blogger_production
+  username: <%= ENV['PG_USERNAME'] %>
+  password: <%= ENV['PG_PASSWORD'] %>

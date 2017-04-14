@@ -1,0 +1,39 @@
+<div class="row">
+   <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-2 col-lg-offset-2 toppad" >
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= current_user.email %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class=" col-md-12 col-lg-12 "> 
+            <table class="table table-user-information">
+              <tbody>
+                <tr>
+                  <td>Username:</td>
+                  <td><%= current_user.username %></td>
+                </tr>
+
+                <tr>
+                  <td>Name:</td>
+                  <td><%= current_user.first_name %> <%= current_user.last_name %></td>
+                </tr>
+
+              	<tr>
+                	<td>About Me</td>
+                	<td>
+                		<%= current_user.about_me %>
+                	</td>
+              	</tr>
+              </tbody>
+            </table>
+            <div class="text-center">
+            <a href="<%= edit_user_path(current_user) %>" class="btn btn-success">Edit Profile</a>
+						<a href="<%= edit_user_registration_path %>" class="btn btn-primary">Account Setting</a>            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

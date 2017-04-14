@@ -1,0 +1,35 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <div id="error_explanation">
+        <h4><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h4>
+
+        <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :type_id %><br>
+    <%= f.select :type_id, Type.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'Please select post type'}, class: 'form-control' %>
+
+  </div>
+
+  <div class="form-group">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, class: 'form-control', placeholder: "Give title to your post" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, class: 'form-control', rows: 10, placeholder: "Describe post" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Publish Post", class: 'btn btn-primary' %>
+    <%= link_to 'Back', posts_path %>
+  </div>
+<% end %>

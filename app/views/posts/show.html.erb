@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @post.type.name.capitalize if @post.type %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post.user.username.capitalize %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= simple_format(@post.description) %>
+</p>
+<% if user_signed_in? %>
+	<%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-success' %>
+	<%= link_to 'Back', posts_path %>
+<% else %>
+	<%= link_to 'Back', :back, class: 'btn btn-danger' %>
+<% end %>
+
+<hr>
+<h3>Discussion</h3>
+<br>
+<% @post.comments.order('created_at').each do |comment| %>
+  <% if !comment.id.nil? %>
+  <blockquote class="blockquote">
+    <p>
+      <%= comment.body %>
+      <br>
+      <small>by, <strong>
+            <%= comment.user.username %>
+            </strong>
+      </small>
+    </p>
+  </blockquote>
+  <% end %>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= form_for @comment do |f| %>
+    <div class="form-group">
+      <%= f.text_area :body, class: "form-control", required: true %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Post Comment", class: "btn btn-info" %>
+    </div>
+  <% end %>
+<% else %>
+  <h4>Please <%= link_to "Login", new_user_session_path, style: "color: #d43f3a;" %> to Discuss.</h4>
+<% end %>

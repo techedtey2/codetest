@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <% @posts.each do |post| %>
+    <div class="post-preview">
+      <a href="<%= post_url(post) %>">
+        <h2 class="post-title">
+          <%= post.title.capitalize if post.title %>
+        </h2>
+      </a>
+      <p class="post-meta">Posted by <a href="#"><%= post.user.username %></a> on <%= post.created_at.strftime("%B %d, %Y") %><br />
+        Tag : <a href="<%= root_url(:search => post.type.name) %>"><%= post.type.name %></a>
+      </p>
+    </div>
+    <hr>
+    <% end %>
+    <%= paginate @posts %>
+  </div>
+</div>
